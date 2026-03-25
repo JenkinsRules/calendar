@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header id="app-header">
+    <div id="header-nav">
+      <button id="btn-prev" aria-label="Previous month">&#8249;</button>
+      <h1 id="month-label"></h1>
+      <button id="btn-next" aria-label="Next month">&#8250;</button>
+    </div>
+    <button id="btn-add-event">+ Add Event</button>
+  </header>
+
+  <!-- CALENDAR -->
+  <main id="calendar-container">
+    <div id="day-headers"></div>
+    <div id="calendar-grid"></div>
+  </main>
+
+  <!-- ADD / EDIT EVENT MODAL -->
+  <div id="modal-overlay" class="hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="modal">
+      <header id="modal-header">
+        <h2 id="modal-title">Add Event</h2>
+        <button id="modal-close" aria-label="Close">&times;</button>
+      </header>
+      <form id="event-form" novalidate>
+        <div class="field-group">
+          <label for="input-title">Title <span class="required">*</span></label>
+          <input id="input-title" type="text" maxlength="100" autocomplete="off">
+          <span class="error-msg" id="err-title"></span>
+        </div>
+        <div class="field-group">
+          <label for="input-date">Date <span class="required">*</span></label>
+          <input id="input-date" type="date">
+          <span class="error-msg" id="err-date"></span>
+        </div>
+        <div class="field-group">
+          <label for="input-time">Time <span class="optional">(optional)</span></label>
+          <input id="input-time" type="time">
+        </div>
+        <div class="field-group">
+          <label for="input-desc">Description <span class="optional">(optional)</span></label>
+          <textarea id="input-desc" rows="3" maxlength="500"></textarea>
+        </div>
+        <div id="modal-actions">
+          <button type="button" id="btn-delete-event" class="hidden danger">Delete</button>
+          <button type="submit" id="btn-save-event">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
