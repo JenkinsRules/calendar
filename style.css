@@ -4,7 +4,7 @@
   --blue-dark:  #1558b0;
   --blue-light: #e8f0fe;
   --text:       #3c4043;
-  --muted:      #70757a;
+  --muted:      #5f6368;
   --border:     #dadce0;
   --surface:    #ffffff;
   --hover:      #f1f3f4;
@@ -64,6 +64,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: background 0.15s;
 }
 #btn-menu:hover { background: var(--hover); }
+#btn-menu:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .h-line { display: block; width: 18px; height: 2px; background: var(--muted); border-radius: 1px; }
 
 /* Calendar logo icon */
@@ -183,6 +184,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   box-shadow: 0 2px 6px rgba(0,0,0,.2), 0 4px 4px rgba(0,0,0,.12);
   background: var(--hover);
 }
+#btn-add-event:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 .create-plus { stroke: var(--blue); flex-shrink: 0; }
 
 /* Mini calendar */
@@ -212,6 +214,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: background 0.15s;
 }
 .mini-nav button:hover { background: var(--hover); }
+.mini-nav button:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
 #mini-day-headers {
   display: grid;
@@ -317,6 +320,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 .day-cell:nth-child(7n) { border-right: none; }
 .day-cell:hover { background: var(--hover); }
+.day-cell:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
 
 .day-number {
   display: inline-flex;
@@ -343,10 +347,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 .event-chip {
   display: block;
+  width: 100%;
+  text-align: left;
   background: var(--blue);
   color: #fff;
   border-radius: 4px;
   font-size: 0.72rem;
+  font-family: inherit;
   padding: 2px 6px;
   white-space: nowrap;
   overflow: hidden;
@@ -356,8 +363,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: background 0.12s;
 }
 .event-chip:hover { background: var(--blue-dark); }
+.event-chip:focus-visible { outline: 2px solid var(--blue-dark); outline-offset: 1px; }
 
 .event-chip-more {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
   font-size: 0.72rem;
   color: var(--muted);
   padding: 1px 6px;
@@ -365,6 +377,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   line-height: 1.5;
 }
 .event-chip-more:hover { color: var(--blue); }
+.event-chip-more:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
 
 /* ─── Modal ───────────────────────────────────────────────────────────────── */
 #modal-overlay {
@@ -410,6 +423,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: background 0.15s;
 }
 #modal-close:hover { background: var(--hover); }
+#modal-close:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
 
 .field-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; }
 .field-group label { font-size: 0.85rem; font-weight: 500; }
@@ -473,6 +487,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   transition: background 0.15s, border-color 0.15s;
 }
 .danger:hover { background: #fce8e6; border-color: var(--danger); }
+.danger:focus-visible { outline: 2px solid var(--danger); outline-offset: 2px; }
 
 /* ─── Utility ─────────────────────────────────────────────────────────────── */
 .hidden { display: none !important; }

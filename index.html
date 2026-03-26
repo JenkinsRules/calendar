@@ -59,8 +59,8 @@
       </aside>
 
       <main id="calendar-container">
-        <div id="day-headers"></div>
-        <div id="calendar-grid"></div>
+        <div id="day-headers" role="row"></div>
+        <div id="calendar-grid" role="grid" aria-label="Calendar"></div>
       </main>
     </div>
   </div>
@@ -74,14 +74,16 @@
       </header>
       <form id="event-form" novalidate>
         <div class="field-group">
-          <label for="input-title">Title <span class="required">*</span></label>
-          <input id="input-title" type="text" maxlength="100" autocomplete="off">
-          <span class="error-msg" id="err-title"></span>
+          <label for="input-title">Title <span class="required" aria-hidden="true">*</span></label>
+          <input id="input-title" type="text" maxlength="100" autocomplete="off"
+                 aria-required="true" aria-describedby="err-title">
+          <span class="error-msg" id="err-title" aria-live="polite"></span>
         </div>
         <div class="field-group">
-          <label for="input-date">Date <span class="required">*</span></label>
-          <input id="input-date" type="date">
-          <span class="error-msg" id="err-date"></span>
+          <label for="input-date">Date <span class="required" aria-hidden="true">*</span></label>
+          <input id="input-date" type="date"
+                 aria-required="true" aria-describedby="err-date">
+          <span class="error-msg" id="err-date" aria-live="polite"></span>
         </div>
         <div class="field-group">
           <label for="input-time">Time <span class="optional">(optional)</span></label>

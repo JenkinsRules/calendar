@@ -26,6 +26,30 @@
 - [x] **8. QA + review** — Edge cases, responsive check, review section
   - Acceptance: Feb 2024 (leap year) renders correctly; March 2026 (6-week grid) renders correctly; layout works at 320px and 1280px; review section added below
 
+- [x] **9. a11y — Color contrast** — Raise muted text color to meet WCAG AA 4.5:1
+  - `--muted: #70757a` on white = ~4.04:1, fails AA. Fix: darken to `#5f6368` (~5.9:1).
+
+- [x] **10. a11y — Keyboard: day cells** — Make day cells keyboard-focusable
+  - Add `tabindex="0"` + Enter/Space keydown handler in `renderGrid`. Add `:focus-visible` ring in CSS.
+
+- [x] **11. a11y — Keyboard: event chips & overflow** — Make chips and "+N more" keyboard-accessible
+  - Change `renderEventChips` to create `<button>` elements instead of `<span>`. Update CSS selectors.
+
+- [x] **12. a11y — ARIA on form** — Link errors to inputs; mark required fields
+  - Add `aria-required="true"` to title/date inputs. Add `aria-describedby="err-title"` / `aria-describedby="err-date"`. Add `aria-hidden="true"` to required asterisk spans.
+
+- [x] **13. a11y — Live region for errors** — Announce validation errors to screen readers
+  - Add `aria-live="polite"` to the `#err-title` and `#err-date` spans in HTML.
+
+- [x] **14. a11y — Calendar grid ARIA** — Label the calendar grid and day cells
+  - Add `role="grid"` + `aria-label="Calendar"` to `#calendar-grid`. Add `aria-label` (e.g. "March 25, 2026") to each day cell in `renderGrid`. Add `role="columnheader"` and full day name `aria-label` to day-header spans.
+
+- [x] **15. a11y — Mini calendar day headers** — Single-letter headers need accessible labels
+  - Add `aria-label` (e.g. "Sunday") to each mini day header span so S/M/T/W/T/F/S are unambiguous.
+
+- [x] **16. a11y — Missing focus-visible styles** — Add focus rings to remaining buttons
+  - `#btn-menu`, `#btn-add-event`, `#modal-close`, `.mini-nav button`, `.danger` button.
+
 ---
 
 ## Review

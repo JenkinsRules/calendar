@@ -3,6 +3,7 @@
 // ─── Constants & state ────────────────────────────────────────────────────────
 const LS_KEY = 'calendarEvents';
 const DAY_NAMES       = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAY_NAMES_FULL  = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const DAY_NAMES_SHORT = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const MONTH_NAMES = [
   'January','February','March','April','May','June',
@@ -109,7 +110,15 @@ function renderGrid() {
 
     renderEventChips(cell, dateStr);
     cell.dataset.date = dateStr;
+    cell.setAttribute('tabindex', '0');
+    cell.setAttribute('role', 'gridcell');
+    // Format dateStr (YYYY-MM-DD) as a readable label, avoiding timezone shifts
+    const [dy, dm, dd] = dateStr.split('-').map(Number);
+    cell.setAttribute('aria-label', new Date(dy, dm - 1, dd).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
     cell.addEventListener('click', onCellClick);
+    cell.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onCellClick(e); }
+    });
     grid.appendChild(cell);
   }
 }
@@ -176,7 +185,7 @@ function renderEventChips(cell, dateStr) {
 
   const MAX_CHIPS = 3;
   events.slice(0, MAX_CHIPS).forEach(ev => {
-    const chip = document.createElement('span');
+    const chip = document.createElement('button');
     chip.className = 'event-chip';
     chip.textContent = ev.time ? `${formatTime(ev.time)} ${ev.title}` : ev.title;
     chip.dataset.id = ev.id;
@@ -186,7 +195,7 @@ function renderEventChips(cell, dateStr) {
 
   const overflow = events.length - MAX_CHIPS;
   if (overflow > 0) {
-    const more = document.createElement('span');
+    const more = document.createElement('button');
     more.className = 'event-chip-more';
     more.textContent = `+${overflow} more`;
     more.addEventListener('click', e => { e.stopPropagation(); openModal('add', dateStr); });
@@ -362,17 +371,20 @@ function init() {
 
   // Main day headers (Sun–Sat)
   const headersEl = document.getElementById('day-headers');
-  DAY_NAMES.forEach(name => {
+  DAY_NAMES.forEach((name, i) => {
     const span = document.createElement('span');
     span.textContent = name;
+    span.setAttribute('role', 'columnheader');
+    span.setAttribute('aria-label', DAY_NAMES_FULL[i]);
     headersEl.appendChild(span);
   });
 
   // Mini calendar day headers (S M T W T F S)
   const miniHeaders = document.getElementById('mini-day-headers');
-  DAY_NAMES_SHORT.forEach(name => {
+  DAY_NAMES_SHORT.forEach((name, i) => {
     const span = document.createElement('span');
     span.textContent = name;
+    span.setAttribute('aria-label', DAY_NAMES_FULL[i]);
     miniHeaders.appendChild(span);
   });
 
