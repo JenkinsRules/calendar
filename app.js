@@ -2,8 +2,8 @@
 
 // ─── Constants & state ────────────────────────────────────────────────────────
 const LS_KEY = 'calendarEvents';
-const DAY_NAMES       = ['Sun', 'Man', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const DAY_NAMES_FULL  = ['Sunday', 'Mandag', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const DAY_NAMES       = ['Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør'];
+const DAY_NAMES_FULL  = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
 const DAY_NAMES_SHORT = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const MONTH_NAMES = [
   'January','February','March','April','May','June',
